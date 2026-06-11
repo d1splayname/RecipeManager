@@ -1,5 +1,6 @@
-import * as express from 'express';
+import express from 'express';
 import apiRouter from './routes';
+import "dotenv/config";
 
 const app = express();
 

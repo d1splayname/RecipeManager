@@ -1,7 +1,8 @@
 import pool from "./db";
 
 const RecipeService = {
-    getAllRecipes
+    getAllRecipes,
+    TestDBConnection
 };
 
 async function getAllRecipes() {
@@ -20,6 +21,25 @@ async function getAllRecipes() {
 
         throw new Error("Failed to fetch recipes from database");
     } finally {
+        if (connection) {
+            connection.release();
+        }
+    }
+}
+
+async function TestDBConnection () {
+    let connection;
+
+    try {
+        connection = await pool.getConnection();
+
+        await connection.query("SELECT 1");
+        return true;
+    } catch(error) {
+        console.log("DB error TestDBConnection", error)
+        return false;
+    }
+    finally {
         if (connection) {
             connection.release();
         }

@@ -30,7 +30,7 @@ const App = (props: AppProps) => {
 						<td>{entry.id}</td>
 						<td>{entry.name}</td>
 						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
-						<td>{entry.dateCreated}</td>
+						<td>{new Date(entry.dateCreated).toLocaleString()}</td>
 					</tr>
 				))}
 			</tbody>

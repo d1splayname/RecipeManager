@@ -29,7 +29,7 @@ const App = (props: AppProps) => {
 					<tr key={entry.id}>
 						<td>{entry.id}</td>
 						<td>{entry.name}</td>
-						<td>{entry.url}</td>
+						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
 						<td>{entry.dateCreated}</td>
 					</tr>
 				))}

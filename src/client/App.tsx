@@ -20,7 +20,7 @@ const App = (props: AppProps) => {
 			<thead>
 				<tr>
 					{Object.keys(data[0]).map((header: string) => (
-						<td>{header}</td>
+						<th>{header}</th>
 					))}
 				</tr>
 			</thead>

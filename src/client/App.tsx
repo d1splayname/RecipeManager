@@ -9,6 +9,8 @@ const App = (props: AppProps) => {
 	const [name, setName] = useState<string>('');
 	const [url, setUrl] = useState<string>('');
 
+	const [queryResult, setQueryResult] = useState<string>('');
+
 	type RecipeEntry = {
 		id: string;
 		name: string;
@@ -91,6 +93,10 @@ const App = (props: AppProps) => {
 			<label>URL</label>
 			<input value={url} onChange={(e) => setUrl(e.target.value)} />
 			<button onClick={SaveRecipe}>Add</button>
+
+			<div>
+				<p>result: {queryResult}</p>
+			</div>
 		</main>
 	);
 };

@@ -6,8 +6,8 @@ import { EntryOptionPlugin } from 'webpack';
 const App = (props: AppProps) => {
 	// const [greeting, setGreeting] = useState<string>('');
 	const [allRecipes, setAllRecipes] = useState<JSX.Element | null>(null);
-	const [name, setName] = useState<string>('hello');
-	const [url, setUrl] = useState<string>('https://bakerbynature.com/the-best-cocoa-fudge-brownies/#wprm-recipe-container-51261');
+	const [name, setName] = useState<string>('');
+	const [url, setUrl] = useState<string>('');
 
 	type RecipeEntry = {
 		id: string;

@@ -6,40 +6,35 @@ const RecipeService = {
 };
 
 async function getAllRecipes() {
-    let connection;
-
-    try {
-        connection = await pool.getConnection();
-
-        const rows = await connection.query(`
-            SELECT *
+    const command = `
+        SELECT id, name, url, dateCreated
             FROM simpleRecipes;
-        `);
-        return rows;
-    } catch (error) {
-        console.error("DB error in getAllRecipes", error);
-
-        throw new Error("Failed to fetch recipes from database");
-    } finally {
-        if (connection) {
-            connection.release();
-        }
-    }
+    `;
+    
+    return QueryDatabase(command);
 }
 
 async function TestDBConnection () {
+    const command = `
+        SELECT 1
+    `;
+    
+    return QueryDatabase(command);
+}
+
+async function QueryDatabase(command: string, params: any[] = []) {
     let connection;
 
     try {
         connection = await pool.getConnection();
 
-        await connection.query("SELECT 1");
-        return true;
-    } catch(error) {
-        console.log("DB error TestDBConnection", error)
-        return false;
-    }
-    finally {
+        const result = await connection.query(command, params);
+        return result;
+    } catch (error) {
+        console.error("DB error: ", error);
+
+        throw new Error("DB query failed");
+    } finally {
         if (connection) {
             connection.release();
         }

@@ -56,6 +56,10 @@ const App = (props: AppProps) => {
 	}
 
 	async function SaveRecipe() {
+		if (url.trim() === "") {
+			return;
+		}
+
 		try {
 			const res = await fetch("/api/saveRecipe", {
 				method: "POST",

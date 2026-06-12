@@ -6,6 +6,8 @@ import { EntryOptionPlugin } from 'webpack';
 const App = (props: AppProps) => {
 	// const [greeting, setGreeting] = useState<string>('');
 	const [allRecipes, setAllRecipes] = useState<JSX.Element | null>(null);
+	const [name, setName] = useState<string>('hello');
+	const [url, setUrl] = useState<string>('https://bakerbynature.com/the-best-cocoa-fudge-brownies/#wprm-recipe-container-51261');
 
 	type RecipeEntry = {
 		id: string;
@@ -49,6 +51,29 @@ const App = (props: AppProps) => {
 		}
 	}
 
+	async function SaveRecipe() {
+		try {
+			const res = await fetch("/api/saveRecipe", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					"name": name,
+					"url": url
+				}),
+			});
+			
+			if (!res.ok) {
+				throw new Error(`Save failed: ${res.status}`);
+			}
+			setName('');
+			setUrl('');
+
+			await getAllRecipes();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	useEffect(() => {
 		getAllRecipes();
 	}, []);
@@ -57,6 +82,13 @@ const App = (props: AppProps) => {
 		<main className="container my-5">
 			<h1 className="text-primary text-center">Recipe List</h1>
 			{allRecipes}
+			<h1>Add recipe</h1>
+			<label>Name</label>
+			<input value={name} onChange={(e) => setName(e.target.value)} />
+
+			<label>URL</label>
+			<input value={url} onChange={(e) => setUrl(e.target.value)} />
+			<button onClick={SaveRecipe}>Add</button>
 		</main>
 	);
 };

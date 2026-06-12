@@ -20,4 +20,19 @@ router.get('/api/getAllRecipes', async(req, res, next) => {
     res.json(data)
 });
 
+router.post('/api/saveRecipe', async(req, res, next) => {
+    const inputData = req.body;
+
+    const name = inputData["name"];
+    const url = inputData["url"];
+    
+    const result = await RecipeService.SaveRecipe(name as string, url as string);
+
+    res.json({
+        ...result,
+        // big int cannot be parsed, so need to cast
+        insertId: Number(result.insertId)
+    });
+});
+
 export default router;

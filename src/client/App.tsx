@@ -21,15 +21,17 @@ const App = (props: AppProps) => {
 		<table>
 			<thead>
 				<tr>
-					{Object.keys(data[0]).map((header: string) => (
+					{Object.keys(data[0])
+						.filter((column) => column !== "id")
+						.map((header: string) => (
 						<th>{header}</th>
-					))}
+						))
+					}
 				</tr>
 			</thead>
 			<tbody>
 				{data.map((entry) => (
 					<tr key={entry.id}>
-						<td>{entry.id}</td>
 						<td>{entry.name}</td>
 						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
 						<td>{new Date(entry.dateCreated).toLocaleString()}</td>

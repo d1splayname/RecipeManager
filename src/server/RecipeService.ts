@@ -2,7 +2,8 @@ import pool from "./db";
 
 const RecipeService = {
     getAllRecipes,
-    TestDBConnection
+    TestDBConnection,
+    SaveRecipe
 };
 
 async function getAllRecipes() {
@@ -20,6 +21,17 @@ async function TestDBConnection () {
     `;
     
     return QueryDatabase(command);
+}
+
+async function SaveRecipe(Name: string, URL: string) {
+    const command=`
+        INSERT INTO simpleRecipes (name, url)
+        VALUES(?, ?)
+    `;
+
+    const params: any[] = [Name, URL];
+
+    return await QueryDatabase(command, params);
 }
 
 async function QueryDatabase(command: string, params: any[] = []) {

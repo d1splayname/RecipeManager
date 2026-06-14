@@ -8,7 +8,7 @@ const App = (props: AppProps) => {
 	const [allRecipes, setAllRecipes] = useState<JSX.Element | null>(null);
 	const [name, setName] = useState<string>('');
 	const [url, setUrl] = useState<string>('');
-
+	
 	const [queryResult, setQueryResult] = useState<string>('');
 
 	type RecipeEntry = {
@@ -18,6 +18,13 @@ const App = (props: AppProps) => {
 		dateCreated: string;
 	};
 
+	function ToLocalTeimStamp(time: string) {
+		return new Date(time.replace(" ", "T") + "Z").toLocaleString(undefined, {
+			dateStyle: "medium",
+			timeStyle: "short",
+		})
+	}
+
 	function CreateTable(data: RecipeEntry[]) {
 		let table =
 		<table>
@@ -26,7 +33,7 @@ const App = (props: AppProps) => {
 					{Object.keys(data[0])
 						.filter((column) => column !== "id")
 						.map((header: string) => (
-						<th>{header}</th>
+							<th>{header}</th>
 						))
 					}
 				</tr>
@@ -36,7 +43,7 @@ const App = (props: AppProps) => {
 					<tr key={entry.id}>
 						<td>{entry.name}</td>
 						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
-						<td>{new Date(entry.dateCreated).toLocaleString()}</td>
+						<td>{ToLocalTeimStamp(entry.dateCreated)}</td>
 					</tr>
 				))}
 			</tbody>
@@ -69,10 +76,21 @@ const App = (props: AppProps) => {
 					"url": url
 				}),
 			});
-			
+
 			if (!res.ok) {
 				throw new Error(`Save failed: ${res.status}`);
 			}
+ 
+			const responseBody = await res.json();
+
+			console.log("🚀 ~ SaveRecipe response:", responseBody);
+
+			setQueryResult(`
+				Affected Rows: ${responseBody["affectedRows"]}
+				Affected Rows: ${responseBody["affectedRows"]}
+				Affected Rows: ${responseBody["affectedRows"]}
+			`);
+			
 			setName('');
 			setUrl('');
 

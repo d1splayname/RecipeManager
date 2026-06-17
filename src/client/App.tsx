@@ -11,6 +11,10 @@ const App = (props: AppProps) => {
 	
 	const [queryResult, setQueryResult] = useState<string>('');
 
+	const basePath = typeof window !== 'undefined' &&
+		window.location.pathname.startsWith('/recipes') ?
+		'/recipes' : '';
+
 	type RecipeEntry = {
 		id: string;
 		name: string;
@@ -54,7 +58,7 @@ const App = (props: AppProps) => {
 
 	async function getAllRecipes() {
 		try {
-			const response = await fetch("/api/getAllRecipes");
+			const response = await fetch(`${basePath}/api/getAllRecipes`);
 			const data = await response.json();
 			setAllRecipes(CreateTable(data));
 		} catch (error) {
@@ -68,7 +72,7 @@ const App = (props: AppProps) => {
 		}
 
 		try {
-			const res = await fetch("/api/saveRecipe", {
+			const res = await fetch(`${basePath}/api/saveRecipe`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({

@@ -4,9 +4,12 @@ import "dotenv/config";
 
 const app = express();
 
+const basePath = (process.env.NODE_ENV === 'production') ? '/recipes' : '';
+
+app.use(basePath, express.static('public'));
+app.use(`/${basePath}`, apiRouter);
+
 app.use(express.json());
-app.use(express.static('public'));
-app.use(apiRouter);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server listening on port: ${port}`));

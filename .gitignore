@@ -10,3 +10,7 @@ public/js/app.js
 # custom
 .env
 .vscode/
+
+# compiled output
+public/js/
+public/index.html

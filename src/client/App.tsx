@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { EntryOptionPlugin } from 'webpack';
+import { BASE_PATH } from './basePath';
 
 /* HOOK REACT EXAMPLE */
 const App = (props: AppProps) => {
@@ -10,10 +11,6 @@ const App = (props: AppProps) => {
 	const [url, setUrl] = useState<string>('');
 	
 	const [queryResult, setQueryResult] = useState<string>('');
-
-	const basePath = typeof window !== 'undefined' &&
-		window.location.pathname.startsWith('/recipes') ?
-		'/recipes' : '';
 
 	type RecipeEntry = {
 		id: string;
@@ -58,7 +55,7 @@ const App = (props: AppProps) => {
 
 	async function getAllRecipes() {
 		try {
-			const response = await fetch(`${basePath}/api/getAllRecipes`);
+			const response = await fetch(`${BASE_PATH}/api/getAllRecipes`);
 			const data = await response.json();
 			setAllRecipes(CreateTable(data));
 		} catch (error) {
@@ -72,7 +69,7 @@ const App = (props: AppProps) => {
 		}
 
 		try {
-			const res = await fetch(`${basePath}/api/saveRecipe`, {
+			const res = await fetch(`${BASE_PATH}/api/saveRecipe`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({

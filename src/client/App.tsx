@@ -45,9 +45,9 @@ const App = (props: AppProps) => {
 			<tbody>
 				{data.map((entry) => (
 					<tr key={entry.id}>
-						<td>{entry.name}</td>
-						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
-						<td>{ToLocalTeimStamp(entry.dateCreated)}</td>
+						<td key="1">{entry.name}</td>
+						<td key="2"><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
+						<td key="3">{ToLocalTeimStamp(entry.dateCreated)}</td>
 					</tr>
 				))}
 			</tbody>

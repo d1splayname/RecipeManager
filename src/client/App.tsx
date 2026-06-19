@@ -84,13 +84,7 @@ const App = (props: AppProps) => {
  
 			const responseBody = await res.json();
 
-			console.log("🚀 ~ SaveRecipe response:", responseBody);
-
-			setQueryResult(`
-				Affected Rows: ${responseBody["affectedRows"]}
-				Affected Rows: ${responseBody["affectedRows"]}
-				Affected Rows: ${responseBody["affectedRows"]}
-			`);
+			setQueryResult(`Success, ${responseBody["affectedRows"]} affected row(s)`);
 			
 			setName('');
 			setUrl('');

@@ -19,7 +19,7 @@ const App = (props: AppProps) => {
 		dateCreated: string;
 	};
 
-	function ToLocalTeimStamp(time: string) {
+	function ToLocalTimestamp(time: string) {
 		return new Date(time.replace(" ", "T") + "Z").toLocaleString(undefined, {
 			dateStyle: "medium",
 			timeStyle: "short",
@@ -44,7 +44,7 @@ const App = (props: AppProps) => {
 					<tr key={entry.id}>
 						<td>{entry.name}</td>
 						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
-						<td>{ToLocalTeimStamp(entry.dateCreated)}</td>
+						<td>{ToLocalTimestamp(entry.dateCreated)}</td>
 					</tr>
 				))}
 			</tbody>

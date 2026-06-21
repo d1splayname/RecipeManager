@@ -10,3 +10,6 @@ ToDo:
     - add opening new tab with just the recipe instead of the actual webpage
 
 https://github.com/covalence-io/barebones-react-typescript-express.git
+
+Icons from
+https://www.svgrepo.com/collection/dazzle-line-icons

@@ -3,7 +3,8 @@ import pool from "./db";
 const RecipeService = {
     getAllRecipes,
     TestDBConnection,
-    SaveRecipe
+    SaveRecipe,
+    DeleteRecipe
 };
 
 async function getAllRecipes() {
@@ -30,6 +31,18 @@ async function SaveRecipe(Name: string, URL: string) {
     `;
 
     const params: string[] = [Name, URL];
+
+    return await QueryDatabase(command, params);
+}
+
+async function DeleteRecipe(id: string) {
+    const command = `
+        DELETE
+            FROM simpleRecipes
+        WHERE id = ?
+    `;
+
+    const params: string[] = [id];
 
     return await QueryDatabase(command, params);
 }

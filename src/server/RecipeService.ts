@@ -29,7 +29,7 @@ async function SaveRecipe(Name: string, URL: string) {
         VALUES(?, ?)
     `;
 
-    const params: any[] = [Name, URL];
+    const params: string[] = [Name, URL];
 
     return await QueryDatabase(command, params);
 }

@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react';
 import { EntryOptionPlugin } from 'webpack';
 import { BASE_PATH } from './basePath';
 
-/* HOOK REACT EXAMPLE */
 const App = (props: AppProps) => {
-	// const [greeting, setGreeting] = useState<string>('');
 	const [allRecipes, setAllRecipes] = useState<JSX.Element | null>(null);
 	const [name, setName] = useState<string>('');
 	const [url, setUrl] = useState<string>('');

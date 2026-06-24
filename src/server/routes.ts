@@ -35,4 +35,14 @@ router.post('/api/saveRecipe', async(req, res, next) => {
     });
 });
 
+router.post('/api/deleteRecipe', async(req, res, next) => {
+    const input = req.body;
+
+    const recipeID = input["id"];
+
+    const result = await RecipeService.DeleteRecipe(recipeID);
+
+    res.json(result);
+});
+
 export default router;

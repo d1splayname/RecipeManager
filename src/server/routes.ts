@@ -42,7 +42,10 @@ router.post('/api/deleteRecipe', async(req, res, next) => {
 
     const result = await RecipeService.DeleteRecipe(recipeID);
 
-    res.json(result);
+    res.json({
+        ...result,
+        insertId: Number(result.insertId)
+    });
 });
 
 export default router;

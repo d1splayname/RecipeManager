@@ -4,7 +4,7 @@ import { EntryOptionPlugin } from 'webpack';
 import { BASE_PATH } from './basePath';
 
 const App = (props: AppProps) => {
-	const [allRecipes, setAllRecipes] = useState<JSX.Element | null>(null);
+	const [recipes, setRecipes] = useState<RecipeEntry[] | null>();
 	const [name, setName] = useState<string>('');
 	const [url, setUrl] = useState<string>('');
 	
@@ -24,38 +24,11 @@ const App = (props: AppProps) => {
 		})
 	}
 
-	function CreateTable(data: RecipeEntry[]) {
-		let table =
-		<table>
-			<thead>
-				<tr>
-					{Object.keys(data[0])
-						.filter((column) => column !== "id")
-						.map((header: string) => (
-							<th key={header}>{header}</th>
-						))
-					}
-				</tr>
-			</thead>
-			<tbody>
-				{data.map((entry) => (
-					<tr key={entry.id}>
-						<td>{entry.name}</td>
-						<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
-						<td>{ToLocalTimestamp(entry.dateCreated)}</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
-
-		return table;
-	}
-
 	async function getAllRecipes() {
 		try {
 			const response = await fetch(`${BASE_PATH}/api/getAllRecipes`);
 			const data = await response.json();
-			setAllRecipes(CreateTable(data));
+			setRecipes(data);
 		} catch (error) {
 			console.log(error);
 		}
@@ -100,7 +73,37 @@ const App = (props: AppProps) => {
 	return (
 		<main className="container my-5">
 			<h1 className="text-primary text-center">Recipe List</h1>
-			{allRecipes}
+
+			<table>
+				<thead>
+					<tr>
+						{Object.keys((recipes && recipes[0]) || {})
+							.filter((column) => column !== "id")
+							.map((header: string) => (
+								<th key={header}>{header}</th>
+							))
+						}
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{recipes?.map((entry : RecipeEntry) => (
+						<tr key={entry.id}>
+							<td>{entry.name}</td>
+							<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
+							<td>{ToLocalTimestamp(entry.dateCreated)}</td>
+							<td>
+								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ? "/icons/trash-svgrepo-com.svg" : "/icons/circle-check-svgrepo-com.svg")}
+									alt="delete" width="16" height="16"/>
+
+								<img src={BASE_PATH + "/icons/pen-svgrepo-com.svg"}
+									alt="edit" width="16" height="16"/>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+
 			<h1>Add recipe</h1>
 			<label>Name</label>
 			<input value={name} onChange={(e) => setName(e.target.value)} />

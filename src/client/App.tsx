@@ -10,6 +10,8 @@ const App = (props: AppProps) => {
 	
 	const [queryResult, setQueryResult] = useState<string>('');
 
+	const [deleteConfirmationIndex, setDeleteConfirmationIndex] = useState<Number>(-1);
+
 	type RecipeEntry = {
 		id: string;
 		name: string;
@@ -66,6 +68,37 @@ const App = (props: AppProps) => {
 		}
 	}
 
+	async function DeleteRecipe(recipeID: Number) {
+		setDeleteConfirmationIndex(-1);
+
+		console.log("deleting");
+
+		const res = await fetch(`${BASE_PATH}/api/deleteRecipe`, {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({
+				"id": recipeID
+			})
+		});
+		
+		const resBody = await res.json();
+
+		setQueryResult(`Delete successful, ${resBody["affectedRows"]} affected row(s)`);
+
+		await getAllRecipes();
+	}
+
+	function EditRecipe(recipeID: Number) {
+	}
+
+	function ShowDeleteConfirmation(recipeId: Number) {
+		setDeleteConfirmationIndex(recipeId);
+	}
+	
+	function ClearDelete() {
+		setDeleteConfirmationIndex(-1);
+	}
+
 	useEffect(() => {
 		getAllRecipes();
 	}, []);
@@ -93,11 +126,32 @@ const App = (props: AppProps) => {
 							<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
 							<td>{ToLocalTimestamp(entry.dateCreated)}</td>
 							<td>
-								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ? "/icons/trash-svgrepo-com.svg" : "/icons/circle-check-svgrepo-com.svg")}
-									alt="delete" width="16" height="16"/>
+								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
+										"/icons/trash-svgrepo-com.svg" : "/icons/circle-check-svgrepo-com.svg")}
+									alt="delete" width="16" height="16"
+									onClick={() => {
+										if ((Number(entry.id) !== deleteConfirmationIndex)) {
+											// confirm recipe delete
+											ShowDeleteConfirmation(Number(entry.id));
+										}
+										else {
+											// first delete
+											DeleteRecipe(Number(entry.id))
+										}
+									}} />
 
-								<img src={BASE_PATH + "/icons/pen-svgrepo-com.svg"}
-									alt="edit" width="16" height="16"/>
+								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
+										"/icons/pen-svgrepo-com.svg" : "/icons/ban-svgrepo-com.svg")}
+									alt="edit" width="16" height="16"
+									onClick={() => {
+										if ((Number(entry.id) !== deleteConfirmationIndex)) {
+											// edit button
+											EditRecipe(Number(entry.id))
+										} else {
+											// Cancle delete button
+											ClearDelete();
+										}
+									}} />
 							</td>
 						</tr>
 					))}

@@ -47,7 +47,7 @@ async function DeleteRecipe(id: string) {
     return await QueryDatabase(command, params);
 }
 
-async function QueryDatabase(command: string, params: any[] = []) {
+async function QueryDatabase(command: string, params: string[] = []) {
     let connection;
 
     try {

@@ -22,3 +22,271 @@ $theme-colors: (
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+	background: linear-gradient(180deg, rgba($primary, 0.08), rgba($light, 1) 35%, rgba($secondary, 0.08) 100%);
+	color: $dark;
+	font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", sans-serif;
+}
+
+main.app-shell {
+	max-width: 980px;
+	background-color: #fff;
+	border-radius: 1.8rem;
+	padding: 2rem;
+	box-shadow: 0 1.8rem 3rem rgba($dark, 0.14);
+}
+
+.hero-card,
+.section-card {
+	background-color: rgba($light, 0.98);
+	border: 1px solid rgba($dark, 0.08);
+	border-radius: 1.25rem;
+	padding: 1.4rem 1.6rem;
+}
+
+.hero-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.25rem;
+}
+
+.hero-subtitle {
+	margin: 0.4rem 0 0;
+	font-size: 1rem;
+	color: rgba($dark, 0.7);
+	max-width: 640px;
+}
+
+.recipe-count-pill {
+	padding: 0.65rem 1rem;
+	background-color: $secondary;
+	color: #fff;
+	font-size: 0.95rem;
+	font-weight: 700;
+	border-radius: 999px;
+	box-shadow: 0 0.35rem 0.75rem rgba($dark, 0.08);
+}
+
+.section-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+	margin: 0;
+	font-size: 1.35rem;
+	color: $dark;
+}
+
+.section-hint {
+	font-size: 0.95rem;
+	color: rgba($dark, 0.7);
+}
+
+.table-wrapper {
+	overflow-x: auto;
+	border-radius: 1rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	margin-bottom: 0;
+	background-color: #fff;
+	border: 1px solid rgba($dark, 0.12);
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+thead {
+	background-image: linear-gradient(135deg, rgba($secondary, 0.16), rgba($primary, 0.12));
+}
+
+th,
+td {
+	padding: 1rem 1rem;
+	text-align: left;
+	vertical-align: middle;
+}
+
+th {
+	font-weight: 700;
+	color: $dark;
+}
+
+tbody tr {
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: rgba($info, 0.08);
+}
+
+tbody tr:hover {
+	background-color: rgba($primary, 0.12);
+	transform: translateY(-1px);
+}
+
+tbody td {
+	border-top: 1px solid rgba($dark, 0.08);
+}
+
+a {
+	color: $primary;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.25rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+	color: rgba($dark, 0.9);
+}
+
+input {
+	width: 100%;
+	padding: 0.95rem 1rem;
+	border: 1px solid rgba($info, 0.22);
+	border-radius: 1rem;
+	background-color: rgba($light, 0.98);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+	outline: none;
+	border-color: $info;
+	box-shadow: 0 0 0 0.2rem rgba($info, 0.18);
+}
+
+.btn-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 1.8rem;
+	margin-top: 0.25rem;
+	border: none;
+	border-radius: 1rem;
+	background-image: linear-gradient(135deg, $primary 0%, $secondary 100%);
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-action:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 0.85rem 1.5rem rgba($dark, 0.14);
+}
+
+.btn-action:focus {
+	outline: none;
+	box-shadow: 0 0 0 0.25rem rgba($secondary, 0.2);
+}
+
+.form-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+}
+
+.action-cell {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.action-icon {
+	cursor: pointer;
+	transition: transform 0.2s ease, filter 0.2s ease;
+	filter: grayscale(20%) contrast(0.9);
+}
+
+.action-icon:hover {
+	transform: translateY(-1px);
+	filter: grayscale(0%) contrast(1);
+}
+
+.result-box {
+	margin-top: 1rem;
+	padding: 1.2rem 1.4rem;
+	border: 1px solid rgba($success, 0.3);
+	border-radius: 1rem;
+	background-color: rgba($success, 0.12);
+	color: $dark;
+}
+
+.result-box p {
+	margin: 0;
+}
+
+.help-text {
+	color: rgba($dark, 0.7);
+}
+
+@media (max-width: 900px) {
+	.form-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	main.app-shell {
+		padding: 1.25rem;
+	}
+
+	.hero-heading {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.table-wrapper,
+	table,
+	thead,
+	tbody,
+	tr,
+	th,
+	td {
+		display: block;
+	}
+
+	tr {
+		margin-bottom: 1rem;
+		border: 1px solid rgba($dark, 0.08);
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+
+	th,
+	td {
+		padding: 0.85rem 1rem;
+	}
+
+	th {
+		background-color: rgba($primary, 0.08);
+	}
+}
+

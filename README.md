@@ -13,3 +13,6 @@ https://github.com/covalence-io/barebones-react-typescript-express.git
 
 Icons from
 https://www.svgrepo.com/collection/dazzle-line-icons
+
+Functionality made without AI
+Made it look pretty (SCSS) with AI

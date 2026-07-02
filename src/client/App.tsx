@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { BASE_PATH } from './basePath';
 
-const App = (props: AppProps) => {
+const App = () => {
 	const [recipes, setRecipes] = useState<RecipeEntry[] | null>();
 	const [name, setName] = useState<string>('');
 	const [url, setUrl] = useState<string>('');

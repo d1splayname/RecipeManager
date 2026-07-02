@@ -24,7 +24,7 @@ $theme-colors: (
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
-	background: linear-gradient(180deg, rgba($primary, 0.08), rgba($light, 1) 35%, rgba($secondary, 0.08) 100%);
+	background-color: #f6f8fc;
 	color: $dark;
 	font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", sans-serif;
 }
@@ -106,7 +106,7 @@ table {
 }
 
 thead {
-	background-image: linear-gradient(135deg, rgba($secondary, 0.16), rgba($primary, 0.12));
+	background-color: rgba($secondary, 0.12);
 }
 
 th,
@@ -188,7 +188,7 @@ input:focus {
 	margin-top: 0.25rem;
 	border: none;
 	border-radius: 1rem;
-	background-image: linear-gradient(135deg, $primary 0%, $secondary 100%);
+	background-color: $primary;
 	color: #fff;
 	font-weight: 700;
 	letter-spacing: 0.01em;

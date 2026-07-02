@@ -1,6 +1,4 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { EntryOptionPlugin } from 'webpack';
 import { BASE_PATH } from './basePath';
 
 const App = (props: AppProps) => {

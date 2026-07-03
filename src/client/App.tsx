@@ -103,9 +103,23 @@ const App = () => {
 	}, []);
 
 	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Recipe List</h1>
+		<main className="container my-5 app-shell">
+			<div className="hero-card mb-4 shadow-sm">
+				<div className="hero-heading">
+					<div>
+						<h1 className="text-primary mb-2">Recipe Manager</h1>
+					</div>
+					<div className="recipe-count-pill">{recipes?.length ?? 0} recipes</div>
+				</div>
+			</div>
 
+			<section className="section-card mb-4 shadow-sm">
+				<div className="section-header">
+					<h2>Saved recipes</h2>
+					<span className="section-hint">Click a link to open it in a new tab.</span>
+				</div>
+
+				<div className="table-wrapper">
 			<table>
 				<thead>
 					<tr>
@@ -124,30 +138,25 @@ const App = () => {
 							<td>{entry.name}</td>
 							<td><a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.url}</a></td>
 							<td>{ToLocalTimestamp(entry.dateCreated)}</td>
-							<td>
-								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
+									<td className="action-cell">
+										<img className="action-icon" src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
 										"/icons/trash-svgrepo-com.svg" : "/icons/circle-check-svgrepo-com.svg")}
-									alt="delete" width="16" height="16"
+											alt="delete" width="18" height="18"
 									onClick={() => {
 										if ((Number(entry.id) !== deleteConfirmationIndex)) {
-											// confirm recipe delete
 											ShowDeleteConfirmation(Number(entry.id));
-										}
-										else {
-											// first delete
+											} else {
 											DeleteRecipe(Number(entry.id))
 										}
 									}} />
 
-								<img src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
+										<img className="action-icon" src={BASE_PATH + ((Number(entry.id) !== deleteConfirmationIndex) ?
 										"/icons/pen-svgrepo-com.svg" : "/icons/ban-svgrepo-com.svg")}
-									alt="edit" width="16" height="16"
+											alt="edit" width="18" height="18"
 									onClick={() => {
 										if ((Number(entry.id) !== deleteConfirmationIndex)) {
-											// edit button
 											EditRecipe(Number(entry.id))
 										} else {
-											// Cancle delete button
 											ClearDelete();
 										}
 									}} />
@@ -156,17 +165,35 @@ const App = () => {
 					))}
 				</tbody>
 			</table>
+				</div>
+			</section>
 
-			<h1>Add recipe</h1>
+			<section className="section-card mb-4 shadow-sm">
+				<div className="section-header">
+					<h2>Add recipe</h2>
+					<span className="section-hint">Keep your recipe list growing with name and URL.</span>
+				</div>
+
+				<div className="form-grid">
+					<div className="form-group">
 			<label>Name</label>
 			<input value={name} onChange={(e) => setName(e.target.value)} />
+					</div>
 
+					<div className="form-group">
 			<label>URL</label>
 			<input value={url} onChange={(e) => setUrl(e.target.value)} />
-			<button onClick={SaveRecipe}>Add</button>
+					</div>
+				</div>
 
-			<div>
-				<p>result: {queryResult}</p>
+				<div className="form-actions">
+					<button className="btn-action" onClick={SaveRecipe}>Add recipe</button>
+					<span className="help-text">Tip: paste full recipe URLs for fastest access.</span>
+				</div>
+			</section>
+
+			<div className="result-box">
+				<p className="mb-0">Result: {queryResult || 'No action yet.'}</p>
 			</div>
 		</main>
 	);

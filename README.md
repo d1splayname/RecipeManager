@@ -1,4 +1,4 @@
-ToDo:
+# ToDo:
 - Show recipes in table
 - Save recipes
 - Delete rows from website with confirmation box
@@ -11,10 +11,10 @@ ToDo:
 - scrape recipes and store in database
     - add opening new tab with just the recipe instead of the actual webpage
 
-https://github.com/covalence-io/barebones-react-typescript-express.git
+# AI disclaimer:
+AI uas used for CSCC/UI design but not for any functionality
 
-Icons from
-https://www.svgrepo.com/collection/dazzle-line-icons
+# Source
+TypeScript Template: https://github.com/covalence-io/barebones-react-typescript-express.git
 
-Functionality made without AI
-Made it look pretty (SCSS) with AI
+Icons: https://www.svgrepo.com/collection/dazzle-line-icons

@@ -18,12 +18,19 @@ const App = () => {
 		dateCreated: string;
 	};
 
+	/**
+	 * Helper functions
+	 */
 	function ToLocalTimestamp(time: string) {
 		return new Date(time.replace(" ", "T") + "Z").toLocaleString(undefined, {
 			dateStyle: "medium",
 			timeStyle: "short",
 		})
 	}
+
+	/**
+	 * Database functions
+	 */
 
 	async function getAllRecipes() {
 		try {

@@ -1,20 +1,23 @@
-ToDo:
-- Show recipes in table
-- Save recipes
-- Delete rows from website with confirmation box
-- Add users indicated by phone
-- Use local AI API to get category for recipe (need to create API first)
-    - Add possible categories for recipe
-- filtering by recipes
-- add number of times made (track by each link's clicks)
-- Add star system and rankings
-- scrape recipes and store in database
-    - add opening new tab with just the recipe instead of the actual webpage
+# ToDo:
+- [X] Show recipes in table
+- [X] Save recipes
+- [X] Delete rows from website with confirmation box
+- [ ] Use local Ollama API to get category for recipe (need to create API first)
+    - [ ] Add possible categories for recipe
+- [ ] Filtering by recipes tags/name/number of times cooked, etc.
+- [ ] Add number of times made (track by each link's clicks)
+- [ ] Add star system and rankings
+    - [ ] My rating and website rating
+- [ ] Scrape recipes and store in database
+    - [ ] Add opening new tab with just the recipe instead of the actual webpage
 
-https://github.com/covalence-io/barebones-react-typescript-express.git
+- [ ] Add users and roles (central database for all services?)
+    - [ ] Add recipe permissions
 
-Icons from
-https://www.svgrepo.com/collection/dazzle-line-icons
+# AI disclaimer:
+AI uas used for CSCC/UI design but not for any functionality
 
-Functionality made without AI
-Made it look pretty (SCSS) with AI
+# Source
+TypeScript Template: https://github.com/covalence-io/barebones-react-typescript-express.git
+
+Icons: https://www.svgrepo.com/collection/dazzle-line-icons

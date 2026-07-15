@@ -1,6 +1,7 @@
 import * as express from 'express';
 
 import RecipeService from './RecipeService';
+import { OLLAMA_BASE_PATH } from '../client/basePath';
 
 const router = express.Router();
 
@@ -46,6 +47,20 @@ router.post('/api/deleteRecipe', async(req, res, next) => {
         ...result,
         insertId: Number(result.insertId)
     });
+});
+
+router.post("/api/ollamaPrompt", async(req, res, next) => {
+    const input = req.body;
+
+    const ollamaResponse = await fetch(`${OLLAMA_BASE_PATH}/api/generate`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(input)
+    })
+
+    const responseJSON = await ollamaResponse.json();
+
+    res.json(responseJSON);
 });
 
 export default router;

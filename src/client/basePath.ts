@@ -1,4 +1,19 @@
-const isProd = typeof window !== 'undefined' && window.location.pathname.startsWith('/recipes');
+// const isProd = typeof window !== 'undefined' && window.location.pathname.startsWith('/recipes');
+let isProd = true;
+let useSubpath = false;
 
-export const BASE_PATH = isProd ? '/recipes' : '';
-export const OLLAMA_BASE_PATH = isProd ? "http://localhost:11434" : "http://homelab.local/ollama";
+if (typeof window !== "undefined") {
+    // check if name is either /recipes/ or recipes.homelab.internal
+    if (window.location.pathname.startsWith("/recipes")) {
+        useSubpath = true;
+    }
+
+    if (window.location.hostname.startsWith("localhost")) {
+        isProd = false;
+    }
+}
+
+export const BASE_PATH = useSubpath ? '/recipes' : '';
+// export const BASE_PATH = "/recipes";
+
+export const OLLAMA_BASE_PATH = isProd ? "http://localhost:11434" : "http://ollama.homelab.internal";

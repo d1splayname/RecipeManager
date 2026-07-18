@@ -3,7 +3,6 @@ let isProd = true;
 let useSubpath = false;
 
 if (typeof window !== "undefined") {
-    // check if name is either /recipes/ or recipes.homelab.internal
     if (window.location.pathname.startsWith("/recipes")) {
         useSubpath = true;
     }

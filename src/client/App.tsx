@@ -105,6 +105,20 @@ const App = () => {
 		setDeleteConfirmationIndex(-1);
 	}
 
+	async function FetchWebsite(url: string) {
+		const website = await fetch("/api/scrapeWebsite", {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify ({
+				url: url
+			})
+		});
+
+		const websiteJSON = await website.json();
+
+		return websiteJSON;
+	}
+
 	useEffect(() => {
 		getAllRecipes();
 	}, []);
